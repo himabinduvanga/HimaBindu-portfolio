@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hima Bindu Vanga</title>
+<meta name="description" content="Portfolio of Hima Bindu Vanga, a B.Tech Computer Science student at MVSR Engineering College, Hyderabad, building web projects and learning to build with AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Layout idea: left-aligned editorial single column; section titles sit in a narrow left rail on desktop and stack on mobile. */
+  :root {
+    --bg: #FAF6F0;          /* warm cream */
+    --surface: #F3ECE1;     /* slightly deeper cream for cards */
+    --ink: #2B2622;         /* dark warm text */
+    --muted: #5E554C;       /* secondary text, 6.9:1 on bg */
+    --line: #E2D8C9;        /* hairlines */
+    --accent: #6B8F71;      /* sage green, decorative and fills */
+    --accent-deep: #44654B; /* sage for text and buttons, passes contrast */
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
+    --body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent-deep); text-underline-offset: 3px; }
+  a:hover { color: var(--ink); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.2; margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  .site-header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(250, 246, 240, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; }
+  .brand { font-family: var(--display); font-weight: 600; font-size: 1.1rem; color: var(--ink); text-decoration: none; white-space: nowrap; }
+  .nav-links { display: flex; gap: 22px; font-size: 0.92rem; overflow-x: auto; scrollbar-width: none; }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; white-space: nowrap; padding: 6px 0; }
+  .nav-links a:hover { color: var(--accent-deep); }
+
+  /* Hero */
+  .hero { padding: 72px 0 64px; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+  .hero h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); font-weight: 500; letter-spacing: -0.01em; }
+  .hero h1 span { color: var(--accent-deep); }
+  .hero-intro { margin-top: 24px; max-width: 56ch; color: var(--muted); font-size: 1.1rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .btn {
+    display: inline-block; padding: 12px 22px; border-radius: 999px;
+    font-weight: 500; font-size: 0.95rem; text-decoration: none;
+    border: 1.5px solid var(--accent-deep);
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-primary { background: var(--accent-deep); color: #fff; }
+  .btn-primary:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .btn-ghost { color: var(--accent-deep); }
+  .btn-ghost:hover { background: var(--accent-deep); color: #fff; }
+
+  .glance { border-left: 3px solid var(--accent); padding-left: 24px; display: grid; gap: 18px; }
+  .glance dt { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .glance dd { margin: 2px 0 0; font-family: var(--display); font-size: 1.15rem; }
+  .glance div { min-width: 0; }
+
+  /* Sections */
+  section { border-top: 1px solid var(--line); padding: 64px 0; }
+  .section-grid { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 40px; }
+  .section-grid > h2 { font-size: 1.5rem; color: var(--accent-deep); }
+  .prose { display: grid; gap: 18px; max-width: 64ch; }
+
+  .north-star { margin-top: 8px; padding: 22px 24px; background: var(--surface); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; max-width: 64ch; }
+  .north-star small { display: block; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .north-star p { font-family: var(--display); font-size: 1.2rem; line-height: 1.5; }
+
+  /* Education */
+  .edu h3 { font-size: 1.35rem; }
+  .edu .school { color: var(--muted); margin-top: 4px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 12px 40px; margin-top: 22px; }
+  .facts div { min-width: 0; }
+  .facts dt { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .facts dd { margin: 2px 0 0; font-family: var(--display); font-size: 1.25rem; }
+  .edu-note { margin-top: 22px; color: var(--muted); max-width: 60ch; }
+
+  /* Skills */
+  .skill-groups { display: grid; gap: 26px; }
+  .skill-group h3 { font-family: var(--body); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips li { padding: 6px 14px; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; font-size: 0.95rem; }
+
+  /* Projects */
+  .projects { display: grid; gap: 24px; }
+  .project { border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: 6px 6px 10px 10px; padding: 28px; background: #FDFAF5; }
+  .project h3 { font-size: 1.4rem; }
+  .project .kind { margin-top: 4px; color: var(--muted); font-size: 0.95rem; }
+  .project p.desc { margin-top: 16px; max-width: 62ch; }
+  .project .role { margin-top: 14px; max-width: 62ch; }
+  .project .role strong { font-weight: 600; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .tags li { font-size: 0.82rem; font-weight: 500; color: var(--accent-deep); background: #E8EFE8; padding: 4px 12px; border-radius: 999px; }
+  .more { margin-top: 24px; color: var(--muted); }
+
+  /* Learning */
+  .learning { display: grid; gap: 20px; max-width: 64ch; }
+  .learning li { padding-left: 20px; position: relative; }
+  .learning li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .learning strong { font-weight: 600; }
+
+  /* Goals */
+  .goals { display: grid; gap: 12px; margin-top: 4px; max-width: 64ch; }
+  .goals li { padding-left: 20px; position: relative; }
+  .goals li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 8px; height: 2px; background: var(--accent-deep); }
+
+  /* Contact */
+  .contact-list { display: grid; gap: 14px; margin-top: 8px; }
+  .contact-list a { display: inline-flex; gap: 14px; align-items: baseline; font-size: 1.05rem; }
+  .contact-list .label { display: inline-block; min-width: 84px; color: var(--muted); font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  /* Certifications */
+  .certs { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; }
+  .certs li { border: 1px solid var(--line); border-left: 4px solid var(--accent); background: #FDFAF5; border-radius: 4px 10px 10px 4px; padding: 16px 18px; display: grid; gap: 2px; min-width: 0; }
+  .cert-name { font-family: var(--display); font-size: 1.2rem; }
+  .cert-meta { color: var(--muted); font-size: 0.88rem; }
+
+  /* Email row */
+  .email-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
+  .email-row a { overflow-wrap: anywhere; }
+  .copy-btn { font: inherit; font-size: 0.85rem; font-weight: 500; color: var(--accent-deep); background: transparent; border: 1.5px solid var(--accent-deep); border-radius: 999px; padding: 4px 14px; cursor: pointer; }
+  .copy-btn:hover { background: var(--accent-deep); color: #fff; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 0.9rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+
+  /* Tablet and mobile */
+  @media (max-width: 860px) {
+    .hero { padding: 48px 0 48px; }
+    .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+    .section-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    section { padding: 48px 0; }
+  }
+  @media (max-width: 480px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 20px; }
+    .nav-links { gap: 16px; font-size: 0.88rem; }
+    .brand { font-size: 1rem; }
+    .project { padding: 22px 20px; }
+    .actions .btn { flex: 1 1 100%; text-align: center; }
+    .contact-list a { flex-direction: column; gap: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#top">Hima Bindu Vanga</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Internship</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+      <a href="#learning">Learning</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- Hero -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Hi, I'm Hima. I build things for the web and I'm learning to <span>build with AI.</span></h1>
+        <p class="hero-intro">I'm a Computer Science student at MVSR Engineering College in Hyderabad. I'm working on practical projects and getting better at software development, with the goal of becoming an AI-skilled developer.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">View projects</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <dl class="glance">
+        <div><dt>Based in</dt><dd>Hyderabad, Telangana</dd></div>
+        <div><dt>Studying</dt><dd>B.Tech, Computer Science and Engineering</dd></div>
+        <div><dt>Graduating</dt><dd>2028 (expected)</dd></div>
+        <div><dt>CGPA</dt><dd>9.50</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <div class="wrap section-grid">
+      <h2>About</h2>
+      <div class="prose">
+        <p>I'm studying Computer Science and Engineering at MVSR Engineering College. I like projects where I can see the whole thing come together, from the page someone clicks on to the database behind it.</p>
+        <p>So far I've worked on a mental health platform with a group and built a club management website with a small team. Both taught me how the front end, back end and data connect in a real application.</p>
+        <p>Right now I'm strengthening my programming and problem-solving, and learning how to build with AI so I can make more useful things.</p>
+        <div class="north-star">
+          <small>My goal</small>
+          <p>By June 5, 2027, I am an AI-skilled developer who has built and launched practical projects and is ready for professional opportunities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <div class="wrap section-grid">
+      <h2>Education</h2>
+      <div class="edu">
+        <h3>B.Tech in Computer Science and Engineering</h3>
+        <p class="school">MVSR Engineering College, Hyderabad</p>
+        <dl class="facts">
+          <div><dt>Expected graduation</dt><dd>2028</dd></div>
+          <div><dt>CGPA</dt><dd>9.50</dd></div>
+        </dl>
+        <p class="edu-note">Core subjects I work with: Data Structures and Algorithms, Database Management Systems and Operating Systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="wrap section-grid">
+      <h2>Skills</h2>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <h3>Programming</h3>
+          <ul class="chips"><li>Python</li><li>C</li><li>Java</li><li>JavaScript</li></ul>
+        </div>
+        <div class="skill-group">
+          <h3>Web</h3>
+          <ul class="chips"><li>HTML</li><li>CSS</li></ul>
+        </div>
+        <div class="skill-group">
+          <h3>CS fundamentals</h3>
+          <ul class="chips"><li>Data Structures and Algorithms</li><li>DBMS</li><li>Operating Systems</li></ul>
+        </div>
+        <div class="skill-group">
+          <h3>Tools</h3>
+          <ul class="chips"><li>VS Code</li><li>MS Word</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internship -->
+  <section id="experience">
+    <div class="wrap section-grid">
+      <h2>Internship</h2>
+      <div>
+        <article class="project">
+          <h3>Web Development Internship</h3>
+          <p class="kind">Elewayte</p>
+          <!-- TODO (Hima): add your dates, a few lines on what you actually worked on, and the tools you used. Example layout:
+               <p class="kind">Elewayte · Month Year to Month Year</p>
+               <p class="desc">Your description here.</p>
+               <ul class="tags"><li>Tool 1</li><li>Tool 2</li></ul> -->
+          <ul class="tags"><li>Internship</li><li>Web development</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications">
+    <div class="wrap section-grid">
+      <h2>Certifications</h2>
+      <!-- TODO (Hima): for each certificate, add the issuer and year inside <span class="cert-meta">, and a link if you have one. -->
+      <ul class="certs">
+        <li><span class="cert-name">HTML</span><span class="cert-meta">Certification</span></li>
+        <li><span class="cert-name">CSS</span><span class="cert-meta">Certification</span></li>
+        <li><span class="cert-name">JavaScript</span><span class="cert-meta">Certification</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="wrap section-grid">
+      <h2>Projects</h2>
+      <div>
+        <div class="projects">
+          <article class="project">
+            <h3>MindEase</h3>
+            <p class="kind">A mental health management platform</p>
+            <p class="desc">MindEase is a group project built as a platform for managing mental health.</p>
+            <p class="role"><strong>My role:</strong> I contributed equally to the frontend, backend and database development.</p>
+            <!-- Add the tech stack and key features here once confirmed. -->
+            <ul class="tags"><li>Group project</li><li>Frontend</li><li>Backend</li><li>Database</li></ul>
+          </article>
+
+          <article class="project">
+            <h3>Campus Club Management Website</h3>
+            <p class="kind">A mini project for college clubs</p>
+            <p class="desc">A website that helps students explore clubs, join activities, register for events and receive announcements. It was built to make club activities and event management simpler.</p>
+            <p class="role"><strong>My role:</strong> I worked on it as part of a team of three.</p>
+            <!-- Add the tech stack and specific contribution here once confirmed. -->
+            <ul class="tags"><li>Team of three</li><li>Mini project</li><li>Events and announcements</li></ul>
+          </article>
+        </div>
+        <p class="more">More of my work is on <a href="https://github.com/himabinduvanga" rel="noopener">GitHub</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Currently learning -->
+  <section id="learning">
+    <div class="wrap section-grid">
+      <h2>Currently learning</h2>
+      <ul class="learning">
+        <li><strong>AI development.</strong> Learning how to build with AI, so my projects can do more for the people using them.</li>
+        <li><strong>Problem solving.</strong> Practising data structures and algorithms on <a href="https://leetcode.com/u/Hima_Binduu/" rel="noopener">LeetCode</a>.</li>
+        <li><strong>Building complete projects.</strong> Taking ideas from the first sketch to something people can use.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Career goals -->
+  <section id="goals">
+    <div class="wrap section-grid">
+      <h2>Career goals</h2>
+      <div class="prose">
+        <p>I want to become an AI-skilled developer who builds practical, real-world software. To get there, I'm focusing on:</p>
+        <ul class="goals">
+          <li>Building real-world projects and finishing them.</li>
+          <li>Improving my technical skills every semester.</li>
+          <li>Finding better job opportunities where I can keep learning.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="wrap section-grid">
+      <h2>Contact</h2>
+      <div>
+        <p class="prose">If you'd like to talk about my projects or opportunities, you can reach me by email or on LinkedIn.</p>
+        <ul class="contact-list">
+          <li class="email-row">
+            <a href="mailto:himabinduvanga.hb@gmail.com"><span class="label">Email</span>himabinduvanga.hb@gmail.com</a>
+            <button type="button" class="copy-btn" id="copy-email">Copy email</button>
+          </li>
+          <li><a href="https://www.linkedin.com/in/himabinduvanga11" rel="noopener"><span class="label">LinkedIn</span>linkedin.com/in/himabinduvanga</a></li>
+          <li><a href="https://github.com/himabinduvanga" rel="noopener"><span class="label">GitHub</span>github.com/himabinduvanga</a></li>
+          <li><a href="https://leetcode.com/u/Hima_Binduu/" rel="noopener"><span class="label">LeetCode</span>leetcode.com/u/Hima_Binduu</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Hima Bindu Vanga · Hyderabad, Telangana</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script>
+  // Copy the email address. Falls back quietly if the browser blocks clipboard access.
+  (function () {
+    var btn = document.getElementById("copy-email");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var done = function (msg) {
+        btn.textContent = msg;
+        setTimeout(function () { btn.textContent = "Copy email"; }, 2000);
+      };
+      try {
+        navigator.clipboard.writeText("himabinduvanga.hb@gmail.com").then(
+          function () { done("Copied"); },
+          function () { done("Select the address above"); }
+        );
+      } catch (e) {
+        done("Select the address above");
+      }
+    });
+  })();
+</script>
+</body>
+</html>
